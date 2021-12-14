@@ -1,30 +1,24 @@
-import 'angular-animate';
-import 'angular-aria';
-import 'angular-messages';
-import 'angular-material';
-import ComponentsModule from './components/components';
-import ServicesModule from './services/services';
-import { AppComponent } from './app.component';
+import "angular-animate";
+import "angular-aria";
+
+import ngRedux from "ng-redux";
+import store from "./store/store.js";
+
+import ComponentsModule from "./components/components";
+import ServicesModule from "./services/services";
+import { AppComponent } from "./app.component";
 
 const appModule = angular
-	.module('appModule', [
-		'ngAnimate',
-		'ngAria',
-		'ngMessages',
-		'ngMaterial',
+	.module("appModule", [
+		ngRedux,
+		"ngAnimate",
+		"ngAria",
 		ComponentsModule,
 		ServicesModule,
 	])
-	.config([
-		'$mdThemingProvider',
-		($mdThemingProvider) => {
-			$mdThemingProvider
-				.theme('default')
-				.primaryPalette('brown')
-				.accentPalette('amber');
-		},
-	])
-
-	.component('app', AppComponent);
+	.config(($ngReduxProvider) => {
+		$ngReduxProvider.provideStore(store);
+	})
+	.component("app", AppComponent);
 
 export default appModule;

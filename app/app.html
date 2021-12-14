@@ -1,0 +1,43 @@
+<div id="app">
+        <h1 class="title">Find your nearest restaurant</h1>
+        <div class="container-wrap">
+            <section class="controls-container">
+                <!--location-->
+                <div class="control-wrap">
+                    <h3>Your position</h3>
+                    <!-- <vue-google-autocomplete
+                        id="autocomplete"
+                        placeholder="Type address"
+                        v-on:placechanged="getAddressData"
+                    ></vue-google-autocomplete> -->
+                </div>
+                <!--Distance-->
+                <div class="control-wrap">
+                    <h3>Maximum distance</h3>
+                    <div class="value-box">{{ radius }} m</div>
+                    <div class="radius">
+                        <input
+                            type="range"
+                            min="200"
+                            max="2000"
+                            v-model="radius"
+                            class="slider"
+                            id="radius"
+                        >
+                        <progress min="200" max="2000" :value="radius"></progress>
+                    </div>
+                </div>
+                <!--Categories-->
+                <div class="control-wrap">
+                    <h3>Categories</h3>
+                    <input-tag
+                        v-model="categories"
+                        placeholder="Choose categories"
+                        :options="availableCategories"
+                    ></input-tag>
+                </div>
+            </section>
+            <button @click="searchForVenues">Search</button>
+        </div>
+        <a-table v-show="searched" :data="computedVenues" :columns="columns"></a-table>
+    </div>

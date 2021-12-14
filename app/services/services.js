@@ -1,7 +1,7 @@
-import NavigationService from './navigation.service';
+import TestService from "./test.service";
 
 const ServicesModule = angular
-	.module('services', [])
-	.service('NavigationService', NavigationService).name;
+	.module("services", [])
+	.service("TestService", TestService).name;
 
 export default ServicesModule;

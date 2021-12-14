@@ -1,0 +1,36 @@
+<div class="input-tag">
+	<!-- TAGS -->
+	<div class="tags-container">
+		<div ng-repeat="item in selected" class="tag">
+			{{ item.name }}
+			<span @click="removeSelection(item)">&#10799;</span>
+		</div>
+	</div>
+	<!-- INPUT -->
+	<div class="input-container">
+		<input
+			type="text"
+			v-bind="$attrs"
+			v-model="inputVal"
+			@focus="inputFocus = true"
+			@blur="inputFocus = false"
+		/>
+	</div>
+	<!-- DROPDOWN -->
+	<div
+		class="dropdown"
+		tabindex="0"
+		v-show="focus"
+		@focus="dropdownFocus = true"
+		@blur="dropdownFocus = false"
+	>
+		<div
+			class="dropdown-item"
+			v-for="item in availableOptions"
+			@click="select(item)"
+			:key="item.name"
+		>
+			{{ item.name }}
+		</div>
+	</div>
+</div>
